@@ -72,8 +72,8 @@
                         {{plot.booking[0].user.first_name}}
                     {{plot.booking[0].user.last_name}}
                         )
-                        <br/>Plate no:
-                            {{plot.booking[0].vehicle.plate_no}}
+                        <!--<br/>Plate no:-->
+                            <!--{{plot.booking[0].vehicle.plate_no}}-->
 
 
                     </span>
@@ -97,17 +97,17 @@
     // import axios from 'axios'
     import axios from 'axios';
     // axios.defaults.baseURL = process.env.BASE_URL;
-    let api = 'http://127.0.0.1:8000' + '/api/';
+    let api = 'http://192.168.1.9:8000' + '/api/';
     // let api = 'https://2525afa1.ngrok.io'+'/api/';
     export default {
         components: {Plot, Notif},
 
         mounted: function () {
-            // window.setInterval(() => {
-            //     this.get_data(),
-            //         this.remove_1hour_reserved_no_show_up()
-            // },5000);
-            this.get_data()
+            window.setInterval(() => {
+                this.get_data(),
+                    this.remove_1hour_reserved_no_show_up()
+            },10000);
+            // this.get_data()
         },
 
         methods: {
@@ -240,20 +240,4 @@
 </style>
 
 
-
-
-
-
-<!--// toggleTimer() {-->
-<!--//     if (this.isRunning) {-->
-<!--//         clearInterval(this.interval);-->
-<!--//         console.log('timer stops');-->
-<!--//     } else {-->
-<!--//         this.interval = setInterval(this.incrementTime, 1000);-->
-<!--//     }-->
-<!--//     this.isRunning = !this.isRunning-->
-<!--// },-->
-<!--// incrementTime() {-->
-<!--//     this.time = parseInt(this.time) + 1;-->
-<!--// },-->
-<!--//-->
+<!--ssh -R 80:localhost:8080 ssh.localhost.run-->
