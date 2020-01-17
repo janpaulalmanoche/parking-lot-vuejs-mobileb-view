@@ -106,7 +106,7 @@
             window.setInterval(() => {
                 this.get_data(),
                     this.remove_1hour_reserved_no_show_up()
-            },10000);
+            },2000);
             // this.get_data()
         },
 
