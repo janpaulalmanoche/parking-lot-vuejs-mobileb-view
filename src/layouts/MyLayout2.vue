@@ -18,7 +18,7 @@
         <q-toolbar-title class="absolute-center">
         Parking Lot
         </q-toolbar-title>
-
+      Count : {{count}}
         <!--<div>Quasar v{{ $q.version }}</div>-->
 
 
@@ -86,15 +86,18 @@
 <script>
   import { openURL } from 'quasar'
   import {mapState} from 'vuex'
+
+  let api = 'http://127.0.0.1:8000' + '/api/';
   export default {
     name: 'MyLayout',
     data () {
       return {
-        leftDrawerOpen: false
+        leftDrawerOpen: false,
+
       }
     },
     computed:mapState({
-      // navsFromVuex: state => state.routerModule.navs
+       count: state => state.plot.count
     }),
     methods: {
       openURL

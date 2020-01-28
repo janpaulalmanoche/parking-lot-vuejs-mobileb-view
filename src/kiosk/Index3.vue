@@ -97,20 +97,36 @@
     // import axios from 'axios'
     import axios from 'axios';
     // axios.defaults.baseURL = process.env.BASE_URL;
-    let api = 'http://192.168.1.9:8000' + '/api/';
+    // let api = 'http://192.168.1.9:8000' + '/api/';
+    let api = 'http://127.0.0.1:8000' + '/api/';
     // let api = 'https://2525afa1.ngrok.io'+'/api/';
+    import {mapState} from 'vuex'
     export default {
         components: {Plot, Notif},
 
         mounted: function () {
             window.setInterval(() => {
                 this.get_data(),
+            this.count(),
                     this.remove_1hour_reserved_no_show_up()
+
             },2000);
-            // this.get_data()
+            // this.get_data(),
+            // this.count()
         },
 
+        computed:mapState({
+            counts: state => state.plot.count
+        }),
+
         methods: {
+            count() {
+                axios.get(api + 'count')
+                    .then((response) => {
+                        console.log(response.data)
+                        this.$store.dispatch('SET_COUNT_A',response.data)
+                    })
+            },
             get_data(){
                 axios.get(api+'plot')
                     .then((response)=>{
