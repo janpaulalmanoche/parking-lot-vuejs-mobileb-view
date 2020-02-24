@@ -1,12 +1,13 @@
 <template>
 
     <q-page>
+    
         <!--login modal-->
         <q-dialog v-model="toolbar" persistent>
             <q-card>
                 <q-toolbar>
                     <q-avatar>
-                        <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg">
+                        <img src="./htc.png">
                     </q-avatar>
 
                     <q-toolbar-title><span class="text-weight-bold">User Login</span> (reservation)</q-toolbar-title>
@@ -60,18 +61,18 @@
             <a v-for="(plot ,index) in plots" v-bind:key="plot.id">
                 <div class="grid-item" v-if="plot.status === 'available'"
                      @click=" user_login  ? reservation_modal(plot.id) : modal_1()">
-                   Plot: {{plot.plot}} <br/>
+                   Spot: {{plot.plot}} <br/>
                     {{plot.status}}
                 </div>
                 <div class="grid-item" v-else id="taken">
 
-                   Plot: {{plot.plot}} <br/>
+                   Spot: {{plot.plot}} <br/>
 
                     {{plot.status}}<br/>
-                    <span class="span">(
-                        {{plot.booking[0].user.first_name}}
+                    <span class="span">
+                     
                     {{plot.booking[0].user.last_name}}
-                        )
+                        
                         <!--<br/>Plate no:-->
                             <!--{{plot.booking[0].vehicle.plate_no}}-->
 
@@ -149,12 +150,17 @@
                     plot_id:this.active_selected_plot,
                     user_id:this.user_login_details.id
                 }).then((response)=>{
-                    console.log(response.data)
+                        if(response.data == 'on_plot_already'){
+                             this.showNotif('You Cant Book Another Spot While On Parked'
+                        ,'red','center')
+                        }else{
+                           console.log(response.data)
                     this.get_data()
-                    this.showNotif('Successfully Reserved, (Reservation will be cancelled after 1 hour of no show up)'
-                        ,'blue','center')
+                    this.showNotif('Successfully Reserved, (Reservation will be cancelled after 1 hour of no show up)','blue','center')
+                        }
+                 
                 }).catch((error) =>{
-                    this.showNotif('Only One Reservation Allowed '
+             this.showNotif('Only One Reservation is allowed'
                         ,'red','center')
                 })
             },
@@ -201,7 +207,7 @@
                 active_selected_plot:'',
 
                 plots: [],
-                time: 0,
+                time: '',
                 isRunning: false,
                 interval: null,
                 toolbar: false,
@@ -222,7 +228,7 @@
     .grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        grid-gap: 10px;
+        grid-gap: 5px;
         align-items: start;
         justify-items: center;
         margin:2% 2px;
@@ -230,14 +236,14 @@
     .grid img {
         border: 1px solid rgba(0,0,0,0.3);
         box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.3);
-        max-width: 30%;
+        max-width: 20%;
     }
     .grid-item {
 
-        background-color: rgba(255, 255, 255, 0.8);
-        border: 1px solid rgba(0, 0, 0, 0.8);
+        background-color: rgb(0, 255, 0);
+        border: 1px solid rgb(0, 0, 0, 0.8);
         padding: 20px;
-        font-size: 67px;
+        font-size: 70px;
         text-align: center;
         text-align: center;
         line-height: 80px;
@@ -245,7 +251,8 @@
         width: 400px;
     }
     #taken{
-        background-color:red;
+        background-color:grey;
+
 
     }
     .span{
