@@ -7,13 +7,15 @@
   "author": "jan paul almanoche <janpaulalmanoche@gmail.com>",
   "private": true,
   "scripts": {
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "echo \"No test specified\" && exit 0",
+    "start": "node server.js"
   },
   "dependencies": {
     "@opentok/client": "^2.16.3",
     "@quasar/extras": "^1.0.0",
     "axios": "^0.19.0",
     "cordova": "^9.0.0",
+    "express": "^4.17.1",
     "global": "^4.4.0",
     "quasar": "^1.0.0"
   },

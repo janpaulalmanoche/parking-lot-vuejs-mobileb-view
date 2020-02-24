@@ -98,8 +98,9 @@
     import axios from 'axios';
     // axios.defaults.baseURL = process.env.BASE_URL;
     // let api = 'http://192.168.1.9:8000' + '/api/';
-    let api = 'http://127.0.0.1:8000' + '/api/';
-    // let api = 'https://2525afa1.ngrok.io'+'/api/';
+    // let api = 'http://127.0.0.1:8000' + '/api/';
+
+    let api = '//damp-gorge-98609.herokuapp.com' + '/api/';
     import {mapState} from 'vuex'
     export default {
         components: {Plot, Notif},
